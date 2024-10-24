@@ -1,0 +1,70 @@
+<div class="admin-dashboard">
+    <h2>Admin Incident List</h2>
+    <table mat-table [dataSource]="incidents" class="mat-elevation-z8">
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.id }}</td>
+      </ng-container>
+  
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.title }}</td>
+      </ng-container>
+  
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.description }}</td>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.status }}</td>
+      </ng-container>
+  
+      <!-- Priority Column
+      <ng-container matColumnDef="priority">
+        <th mat-header-cell *matHeaderCellDef>Priority</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.priority }}</td>
+      </ng-container> -->
+  
+      <!-- Created At Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Created At</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.createdAt | date:'short' }}</td>
+      </ng-container>
+  
+      <!-- Updated At Column -->
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef>Updated At</th>
+        <td mat-cell *matCellDef="let incident">{{ incident.updatedAt | date:'short' }}</td>
+      </ng-container>
+  
+      <!-- Comment Column -->
+      <ng-container matColumnDef="comment">
+        <th mat-header-cell *matHeaderCellDef>Comment</th>
+        <td mat-cell *matCellDef="let incident">
+          <input type="text" #commentInput placeholder="Add comment" />
+          <button mat-button (click)="commentOnIncident(incident, commentInput.value)">Comment</button>
+        </td>
+      </ng-container>
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let incident">
+          <button mat-button (click)="resolveIncident(incident)">Resolve</button>
+          <button mat-button (click)="downloadFile(incident.fileUrl)">Download</button>
+        </td>
+      </ng-container>
+  
+      <!-- Header and Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

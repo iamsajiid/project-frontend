@@ -1,0 +1,20 @@
+<div *ngIf="!isFileUploadSection">
+    <h2>Create New Incident</h2>
+    <form (ngSubmit)="onNext()">
+      <div>
+        <label for="title">Incident Title:</label>
+        <input type="text" id="title" [(ngModel)]="incidentTitle" name="title" required>
+      </div>
+      <div>
+        <label for="description">Incident Description:</label>
+        <textarea id="description" [(ngModel)]="incidentDescription" name="description" required></textarea>
+      </div>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+   
+  <div *ngIf="isFileUploadSection">
+    <h3>Upload Attachment</h3>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="onSubmit()">Submit Incident</button>
+  </div>

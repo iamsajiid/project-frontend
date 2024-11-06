@@ -1,0 +1,23 @@
+<div class="upload-container">
+    <h2>Upload Attachment</h2>
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+  
+    <div class="file-input">
+      <input type="file" (change)="onFileSelected($event)" #fileInput/>
+    </div>
+  
+    <div class="buttons">
+      <button (click)="onUploadFile()" [disabled]="!selectedFile">Create Incident</button>
+      <button (click)="onCancelUpload()">Cancel</button>
+      <button (click)="onResetUpload()" [disabled]="!resetChoice">Reset</button>
+      <button (click)="createAndGoToMain()">Create Anyway</button>
+    </div>
+
+    <div *ngIf="showNotification" class="notification">
+        {{ notification }}
+    </div>
+  </div>
+  

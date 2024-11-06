@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="main-container">
+      <h2>Incident List</h2>
+      <div class="btn-div">
+        <button class="logout" (click)="logout()">Logout</button>
+        <button class="create-btn" (click)="createIncident()">Create Incident</button>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Created On</th>
+            <th>Updated On</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let incident of incidents">
+            <td>{{ incident.incId }}</td>
+            <td>{{ incident.incSubject }}</td>
+            <td>{{ incident.incDescription }}</td>
+            <td>{{ incident.status }}</td>
+            <td>
+              {{ incident.createdAt | date : "dd/MM/yy" }}<br />
+              {{ incident.createdAt | date : "hh:mm a" }}
+            </td>
+            <td>
+              {{ incident.updatedAt | date : "dd/MM/yy" }}<br />
+              {{ incident.updatedAt | date : "hh:mm a" }}
+            </td>
+            <td>
+              <button class="edit" (click)="editIncident(incident)">Edit</button>
+              <button class="delete" (click)="deleteIncident(incident)">Delete</button>
+              <button class="download" (click)="downloadIncident(incident)">Download</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <app-edit-incident-dialog *ngIf="editingIncident"
+      [data]="editingIncident"
+      (submit)="onSubmitEdit()"
+      (cancel)="onCancelEdit()">
+    </app-edit-incident-dialog>
+ 
+ 
+           <!-- Conditional rendering of the ConfirmDialogComponent -->
+    <app-confirm-dialog *ngIf="showConfirmDialog"
+      (confirm)="onConfirmDelete()"
+      (cancel)="onCancelDelete()">
+    </app-confirm-dialog>
+    </div>
+  </div>
+  

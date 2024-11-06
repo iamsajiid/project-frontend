@@ -1,0 +1,36 @@
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  text-align: center;
+}
+
+.welcome-container h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-container button {
+  font-size: 1em;
+  padding: 0.8rem 1.5rem;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.welcome-container button:hover {
+  background-color: #45a049;
+}
+
+.welcome-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(70, 150, 70, 0.5);
+}

@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login-component',
   standalone: true,
-  imports: [FormsModule, HttpClientModule,CommonModule],
+  imports: [FormsModule, HttpClientModule, CommonModule],
   templateUrl: './login-component.component.html',
   styleUrl: './login-component.component.css'
 })
@@ -21,7 +21,7 @@ export class LoginComponent {
   notification: string = '';
   showNotification: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     this.authService.login(this.username, this.password).subscribe({
@@ -53,5 +53,9 @@ export class LoginComponent {
       this.showNotification = false;
       this.notification = '';
     }, 3000);
-}
+  }
+
+  redirectToRegister(){
+    this.router.navigate([`/register`])
+  }
 }

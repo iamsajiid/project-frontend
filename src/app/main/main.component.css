@@ -20,14 +20,14 @@
   margin: 0.5rem;
   border: none;
   border-radius: 5px;
-  background-color: #4CAF50;
+  background-color: rgb(70, 143, 244);
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .welcome-container button:hover {
-  background-color: #45a049;
+  background-color: rgb(28, 102, 205);
 }
 
 .welcome-container button:focus {

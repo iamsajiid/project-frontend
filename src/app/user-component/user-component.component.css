@@ -1,107 +1,117 @@
 .container {
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
-  /* width: 100%; */
-  /* max-width: calc(100vw - 300px); */
   padding: 20px;
-  /* margin: 0 auto; */
-  /* background-color: aqua; */
+  background-color: #ffffff; /* Light blue page background */
 }
 
 .main-container {
-  background-color: rgb(255, 247, 240);
+  background-color: #dce9f5; /* Light blue main container */
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  border-radius: 15px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading */
 h2 {
   font-size: 24px;
-  /* background-color: blue; */
-  margin: 0;
-  /* padding: 10px; */
-  /* margin-top: 30px; */
+  font-weight: 600;
+  color: #2c3e50;
   text-align: center;
+  margin: 0;
 }
 
+/* Table Styling */
 table {
   border-collapse: collapse;
+  width: 100%;
+  margin-top: 15px;
 }
 
-th,
-td {
-  border: 1px solid black;
+th, td {
+  border: 1px solid #b0c4de;
   padding: 12px;
   text-align: left;
 }
 
 th {
-  background-color: rgb(244, 195, 120);
+  background-color: #5b9bd5; /* Soft blue for table headers */
+  color: white;
+  font-weight: bold;
 }
 
+td {
+  background-color: #ffffff; /* White for table cells */
+}
+
+/* Button Styling */
 button {
-  padding: 10px 15px;
-  background-color: #e05b02;
-  color: black;
+  padding: 10px 20px;
+  background-color: #5b9bd5; /* Primary blue color */
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   margin-right: 5px;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s;
 }
 
-/* button:hover {
-  background-color: #b24700;
+button:hover {
+  background-color: #3b79a5; /* Darker blue on hover */
 }
+
+/* Priority and Status Buttons */
 .high-priority {
-  background-color: rgb(232, 0, 0);
+  background-color: #e74c3c; /* Red for high priority */
+  color: white;
 }
-
 .medium-priority {
-  background-color: rgb(255, 192, 75);
+  background-color: #f39c12; /* Yellow for medium priority */
+  color: white;
 }
-
 .low-priority {
-  background-color: rgb(2, 166, 2);
-}
- */
-
-.logout, .delete{
-  background-color: red;
-}
-.logout:hover, .delete:hover{
-  background-color: rgb(201, 2, 2);
+  background-color: #27ae60; /* Green for low priority */
+  color: white;
 }
 
-.create-btn{
-  background-color: rgb(0, 177, 0);
-
-  &:hover{
-    background-color: green;
-  }
+/* Additional Button Styles */
+.logout, .delete {
+  background-color: #e41313; /* Red for delete/logout */
+  color: white;
+}
+.logout:hover, .delete:hover {
+  background-color: #b51313; /* Darker red on hover */
 }
 
-.download{
-  /* background-color: rgb(87, 87, 245); */
-  background-color: lightpink;
-  &:hover{
-    /* background-color: rgb(68, 68, 252); */
-    background-color: rgb(252, 136, 153);
-  }
+.create-btn {
+  background-color: #27ae60; /* Green for create */
+  color: white;
+}
+.create-btn:hover {
+  background-color: #229954; /* Darker green on hover */
 }
 
-.edit{
-  background-color: rgb(255, 196, 0);
-  &:hover{
-    background-color: rgb(230, 176, 1);
-  }
+.download {
+  background-color: #cceeff; /* Light blue for download */
+  color: #2c3e50;
+}
+.download:hover {
+  background-color: #a9d8f5; /* Darker blue on hover */
 }
 
-.btn-div{
+.edit {
+  background-color: #b0c4de; /* Light blue-gray for edit */
+  color: #2c3e50;
+}
+.edit:hover {
+  background-color: #7f9bb7; /* Slightly darker blue-gray on hover */
+}
+
+/* Centering Button Container */
+.btn-div {
   text-align: center;
 }

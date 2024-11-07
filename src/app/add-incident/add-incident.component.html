@@ -3,39 +3,41 @@
     (ngSubmit)="createIncident(incidentForm)"
     #incidentForm="ngForm"
     class="incident-form"
-
+ 
   >
     <h2>Create Incident</h2>
-    <button type="button" (click)="onGoBack()" class="btn-go-back">Go Back</button>
     <div class="main">
       <div class="left">
         <div class="form-group">
           <label for="incSubject">Title:</label>
           <input
-            type="text"
-            id="incSubject"
-            placeholder="Enter Title"
-            [(ngModel)]="incident.incSubject"
-            name="incSubject"
-            required
+          type="text"
+          id="incSubject"
+          placeholder="Enter Title"
+          [(ngModel)]="incident.incSubject"
+          name="incSubject"
+          required
           />
         </div>
         <div class="form-group">
           <label for="incDescription">Description:</label>
           <textarea
-            id="incDescription"
-            placeholder="Enter Description"
-            [(ngModel)]="incident.incDescription"
-            name="incDescription"
-            required
+          id="incDescription"
+          placeholder="Enter Description"
+          [(ngModel)]="incident.incDescription"
+          name="incDescription"
+          required
           ></textarea>
         </div>
       </div>
     </div>
-
-    <button type="submit" class="btn-submit">Next</button>
+ 
+    <div class="btn-div">
+      <button type="button" (click)="onGoBack()" class="btn-go-back">Back</button>
+      <button type="submit" class="btn-submit">Next</button>
+    </div>
   </form>
-
+ 
   <div *ngIf="showNotification" class="notification">
     {{ notification }}
   </div>

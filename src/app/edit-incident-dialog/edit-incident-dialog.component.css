@@ -4,26 +4,25 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: blueviolet ; */
 }
  
+/* Dialog Box */
 .dialog-box {
-  background-color: blanchedalmond;
-  padding: 20px;
-  border-radius: 5px;
+  background-color: #e3f2fd; /* Light blue */
+  padding: 25px;
   width: 400px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
   border-radius: 10px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
  
+/* Edit Form */
 .edit-form {
-  background-color: rgb(255, 247, 240);
-  /* border: 1px solid #ddd; */
+  background-color: #f0f8ff; /* Very light blue */
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -32,73 +31,80 @@
  
 .edit-form label {
   display: block;
+  color: #0d47a1; /* Dark blue text */
   margin: 10px 0 5px;
 }
  
-.edit-form input, .edit-form textarea {
+/* Input and Textarea Fields */
+.edit-form input,
+.edit-form textarea {
   width: 100%;
-  padding: 8px;
+  padding: 10px;
   margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #b0c4de; /* Light blue border */
+  background-color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: medium;
+  color: black;
 }
  
-.edit-form .btn-div {
-  text-align: center;
-}
- 
-.form-group{
+.form-group {
   display: flex;
+  /* align-items: center; */
 }
-
-.form-group label{
+ 
+.form-group label {
   flex: 1;
+  color: black;
   text-align: left;
 }
-
-.form-group input,.form-group textarea{
-  flex:2;
-  font-family:'Times New Roman', Times, serif;
-  font-size: medium;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  background-color: rgb(235, 234, 233);
+ 
+.form-group input,
+.form-group textarea {
+  flex: 2;
   padding: 10px;
-}
-.form-group textarea{
-  height: 100px;
+  color: black;
 }
  
-.btn-div{
+.form-group textarea {
+  height: 100px;
+  resize: none;
+}
+ 
+/* Button Container */
+.btn-div {
   margin-top: 10px;
   display: flex;
   gap: 10px;
   justify-content: center;
 }
-
-.btn-div button{
+ 
+/* Buttons */
+.btn-div button {
   padding: 10px 20px;
-  outline: none;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   font-weight: bold;
-  color: black;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
 }
  
-.cancel{
-  background-color: #fc1100;
-  transition: background-color 0.2s ease;
-}
-
-.cancel:hover{
-  background-color: rgb(225, 2, 2)
+/* Cancel Button */
+.cancel {
+  background-color: #e41313; /* Soft red for cancel */
 }
  
-.submit{
-  background-color: #02c508;
-  transition: background-color 0.2s ease;
+.cancel:hover {
+  background-color: #b51313; /* Darker red on hover */
 }
-
-.submit:hover{
-  background-color: rgb(0, 185, 15)
+ 
+/* Submit Button */
+.submit {
+  background-color: #2296f5; /* Medium blue for submit */
+}
+ 
+.submit:hover {
+  background-color: #1d80d6; /* Darker blue on hover */
 }

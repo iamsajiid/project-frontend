@@ -68,38 +68,6 @@ export class AddIncidentComponent {
       .subscribe();
   }
   
-    // createIncident(incidentForm: NgForm) {
-    //   if (!this.incident.incSubject || !this.incident.incDescription) {
-    //     this.showSuccessNotification('Please enter all fields.');
-    //     return;
-    //   }
-  
-    //   this.incidentService.addIncident(this.incident)
-    //     .pipe(
-    //       tap(response => {
-    //         console.log('Incident created:', response);
-    //         this.showSuccessNotification('Incident has been created!');
-    //         incidentForm.resetForm();
-    //         this.incident = { incId: 0, incSubject: '', incDescription: '' };
-  
-    //         // After creating the incident, navigate to the UploadComponent
-    //         if (response && response.incId
-    //         ) {
-    //           const incidentId = response.incId;
-    //           this.router.navigate([`/upload/${incidentId}`]); // Navigate to upload page with incidentId
-    //         } else {
-    //           console.error('Incident ID is missing in the response.');
-    //         }
-    //       }),
-    //       catchError(error => {
-    //         console.error('Error creating incident:', error);
-    //         this.showSuccessNotification('Failed to create incident.');
-    //         return of(null);  // Return a dummy observable to complete the flow
-    //       })
-    //     )
-    //     .subscribe();
-    // }
-  
     showSuccessNotification(message: string) {
       this.notification = message;
       this.showNotification = true;

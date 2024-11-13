@@ -39,12 +39,51 @@ export class UserComponent implements OnInit {
       const userId = params.get('id'); // Extract user ID from the URL
       if (userId) {
         this.incidentService.setUserId(userId);
-        this.attachmentService.setUserId(userId); // Set user ID in the service
-        this.fetchIncidents(); // Fetch incidents after setting user ID
+        this.attachmentService.setUserId(userId);
+        // // Extract the role from the JWT token
+        // const role = this.getRoleFromToken();  // You can define this method to extract the role
+  
+        // if (role) {
+        //   // Set the role in the services or handle accordingly
+        //   console.log('Role from token:', role);
+        //   this.incidentService.setRole(role);  // Assuming you have a setRole method in your service
+        //   // this.attachmentService.setRole(role);
+  
+        //   // Optionally, you can update the URL or redirect based on role if needed
+        //   // For example, if the role is admin, you could set different base URL or make certain API calls
+        // } else {
+        //   console.error('Role is missing from the token');
+        // }
+        this.fetchIncidents();
       }
     });
   }
-
+  
+  // private getRoleFromToken(): string | null {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     // Decode the token (split by "." to get the payload part)
+  //     const payload = atob(token.split('.')[1]); // Decode base64
+  //     console.log('Decoded Payload:', payload);  // Log decoded payload for debugging
+  
+  //     try {
+  //       const decoded = JSON.parse(payload);  // Parse payload to a JSON object
+  //       console.log('Decoded Object:', decoded);  // Log the parsed object
+  
+  //       // Check if the roles array exists and extract the role
+  //       if (decoded.roles && decoded.roles.length > 0) {
+  //         return decoded.roles[0].authority || null;  // Extract the first role's authority
+  //       } else {
+  //         return null;  // No role found
+  //       }
+  //     } catch (e) {
+  //       console.error('Error decoding token:', e);
+  //       return null;  // Return null if the token is invalid or parsing failed
+  //     }
+  //   }
+  //   return null;  // Return null if no token is found
+  // }
+  
   fetchIncidents() {
     this.incidentService.getIncidents().subscribe(data => {
       this.incidents = data;
@@ -59,7 +98,7 @@ export class UserComponent implements OnInit {
   editIncident(incident: IncidentModel) {
     this.editingIncident = { ...incident };  // Copy the incident to edit
   }
- 
+
   onCancelEdit() {
     this.editingIncident = null;  // Close the form without saving changes
   }
@@ -93,21 +132,6 @@ export class UserComponent implements OnInit {
     }
   }
  
- 
-  // deleteIncident(incident: IncidentModel) {
-  //   if (confirm(`Are you sure you want to delete incident ${incident.incId}?`)) {
-  //     this.incidentService.deleteIncident(incident.incId).subscribe({
-  //       next: () => {
-  //         this.incidents = this.incidents.filter(i => i.incId !== incident.incId);
-  //       },
-  //       error: (error) => {
-  //         console.error('Error deleting incident:', error);
-  //       }
-  //     });
-  //   }
-  // }
- 
- 
   deleteIncident(incident: IncidentModel) {
     this.currentIncident = incident;
     this.showConfirmDialog = true;
@@ -131,22 +155,17 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/main']);
   }
 
-  downloadIncident(incident: IncidentModel){
-    console.log("download method incident -- ", incident)
+  downloadIncident(incident: IncidentModel): void {
+    console.log("download method incident -- ", incident);
     this.incidentService.downloadIncident(Number(incident.incId)).subscribe({
       next: (fileBlob: Blob) => {
-        // Create an object URL for the Blob
         const url = window.URL.createObjectURL(fileBlob);
-  
-        // Create an invisible <a> element to trigger the download
         const a = document.createElement('a');
         a.href = url;
-        a.download = `incident_report_${incident.incId}.xlsx`;  // Set the file name
-  
-        // Append the <a> element to the DOM, click it, and remove it
+        a.download = `incident_report_${incident.incId}.xlsx`;
         document.body.appendChild(a);
         a.click();
-        window.URL.revokeObjectURL(url);  // Clean up the object URL after download
+        window.URL.revokeObjectURL(url);
       },
       error: (error) => {
         console.error('Error downloading file:', error);

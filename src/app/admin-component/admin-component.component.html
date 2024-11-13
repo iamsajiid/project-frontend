@@ -1,2 +1,92 @@
-<p>admin-component works!</p>
-<button (click)="logout()">Logout</button>
+<div class="container">
+  <div class="main-container">
+    <h2>Incident List</h2>
+    <div class="btn-div">
+      <button class="logout" (click)="logout()">Logout</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created On</th>
+          <th>Updated On</th>
+          <th>Actions</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let incident of incidents">
+          <td>{{ incident.incId }}</td>
+          <td>{{ incident.incSubject }}</td>
+          <td>{{ incident.incDescription }}</td>
+          <td>{{ incident.status }}</td>
+          <td>
+            {{ incident.createdAt | date : "dd/MM/yy" }}<br />
+            {{ incident.createdAt | date : "hh:mm a" }}
+          </td>
+          <td>
+            {{ incident.updatedAt | date : "dd/MM/yy" }}<br />
+            {{ incident.updatedAt | date : "hh:mm a" }}
+          </td>
+          <td>
+            <button class="edit" (click)="editIncident(incident)">Edit</button>
+            <button class="delete" (click)="deleteIncident(incident)">
+              Delete
+            </button>
+            <button class="resolve" (click)="resolveIncident(incident.incId)">
+              Resolve
+            </button>
+          </td>
+          <td>
+            
+            <div class="comment-div" *ngIf="selectedIncidentId !== incident.incId" (click)="toggleCommentTextarea(incident)">
+              {{ incident.comments && incident.comments.length > 0
+                ? incident.comments[incident.comments.length - 1].commentText
+                : 'No comments' }}
+            </div>
+
+            <input
+              class="comment-input"
+              *ngIf="selectedIncidentId === incident.incId"
+              name="comment"
+              type="text"
+              [(ngModel)]="currentCommentText"
+            >
+
+            <div class="btn-div">
+              <button
+                *ngIf="selectedIncidentId === incident.incId"
+                class="btn-submit"
+                (click)="addComment(incident)"
+              >
+              Submit
+              </button>
+              <button *ngIf="selectedIncidentId === incident.incId" (click)="selectedIncidentId = null; currentCommentText = ''">
+                Cancel
+              </button>
+
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <app-edit-incident-dialog
+      *ngIf="editingIncident"
+      [data]="editingIncident"
+      (submit)="onSubmitEdit()"
+      (cancel)="onCancelEdit()"
+    >
+    </app-edit-incident-dialog>
+
+    <app-confirm-dialog
+      *ngIf="showConfirmDialog"
+      (confirm)="onConfirmDelete()"
+      (cancel)="onCancelDelete()"
+    >
+    </app-confirm-dialog>
+  </div>
+</div>

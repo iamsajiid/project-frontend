@@ -1,3 +1,5 @@
+import { CommentModel } from "./Comment.model";
+
 export interface IncidentModel {
     incId: number;
     incSubject: string;
@@ -5,5 +7,6 @@ export interface IncidentModel {
     status?: string;
     createdAt?: string;
     updatedAt?: string;
+    comments?: Array<CommentModel>;
   }
   

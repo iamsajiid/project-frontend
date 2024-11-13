@@ -31,6 +31,8 @@ export class AdminComponent implements OnInit {
   commentEnabled: boolean = true;
   currentCommentText: string = '';
   selectedIncidentId: number | null = null;
+  notification: string = '';
+  showNotification: boolean = false;
 
   constructor(
     private incidentService: IncidentService,
@@ -55,7 +57,7 @@ export class AdminComponent implements OnInit {
 
   fetchIncidents() {
     this.incidentService.getIncidents().subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.incidents = data;
     });
   }
@@ -157,6 +159,11 @@ export class AdminComponent implements OnInit {
     const commentData = {
       commentText: this.currentCommentText,
     };
+
+    if(incident.status === "RESOLVED"){
+      this.showSuccessNotification("cannot add comment, incident already resolved")
+      return;
+    }
   
     this.incidentService.addComment(incident.incId, commentData).subscribe({
       next: (response) => {
@@ -169,4 +176,14 @@ export class AdminComponent implements OnInit {
       },
     });
   }
+
+  showSuccessNotification(message: string) {
+    this.notification = message;
+    this.showNotification = true;
+
+    setTimeout(() => {
+      this.showNotification = false;
+      this.notification = '';
+    }, 3000);
+}
 }

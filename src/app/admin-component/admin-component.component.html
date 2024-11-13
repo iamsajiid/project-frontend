@@ -41,7 +41,7 @@
             </button>
           </td>
           <td>
-            
+
             <div class="comment-div" *ngIf="selectedIncidentId !== incident.incId" (click)="toggleCommentTextarea(incident)">
               {{ incident.comments && incident.comments.length > 0
                 ? incident.comments[incident.comments.length - 1].commentText
@@ -88,5 +88,8 @@
       (cancel)="onCancelDelete()"
     >
     </app-confirm-dialog>
+    <div *ngIf="showNotification" class="notification">
+      {{ notification }}
+    </div>
   </div>
 </div>
